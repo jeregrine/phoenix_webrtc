@@ -24,7 +24,7 @@ let joinChannel = () => {
 
   channel.on(`chat_start`, payload => {
     if(payload.users.includes(window.user_id)) {
-      updateStatus("Another use found, connecting...")
+      updateStatus("Another user found, connecting...")
       let otherUser = payload.users.filter((id) => window.user_id != id)[0]
       channel.leave()
       channel = null
