@@ -15,9 +15,9 @@
     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
     <script>window.user_id = "<%= assigns[:user_id] %>";</script>
     <div class="container">
-      <header class="header">
-        <h1> Roulette </h1>
-      </header>
+      <div class="row">
+        <h1> ElixirConf Roulette </h1>
+      </div>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
@@ -27,6 +27,13 @@
       </main>
 
     </div> <!-- /container -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          Made by <a href="https://www.rokkincat.com">RokkinCat</a>
+        </div>
+      </div>
+    </footer>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
