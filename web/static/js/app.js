@@ -31,6 +31,11 @@ let updateStatus = (status) => {
 }
 updateStatus("Waiting for another User")
 let joinChannel = () => {
+  if(!Peer.WEBRTC_SUPPORT) {
+    updateStatus("Sorry your browser is not supported, please use Chrome or Firefox")
+    return
+  }
+
   channel = socket.channel("users:lobby", {})
   channel.join()
     .receive("ok", resp => { console.log("Joined users successfully", resp) })
@@ -48,6 +53,12 @@ let joinChannel = () => {
         .receive("error", resp => { console.log("Unable to join", resp) })
 
       getUserMedia({video: true, audio: true}, (err, stream) => {
+        if(err) {
+          updateStatus("There was a problem with your WebCam/Microphone. Please check your settings and try again.")
+          joinChannel();
+          return
+        }
+
         let myVideo = document.getElementById('my-video')
         let video = document.getElementById('caller-video')
         let vendorURL = window.URL || window.webkitURL
@@ -55,7 +66,7 @@ let joinChannel = () => {
         myVideo.muted = true
         myVideo.play()
 
-        var peer = new Peer({ initiator: payload.initiator == window.user_id, trickle: true, stream: stream, config: {iceServers: [{url:'stun:stun.l.google.com:19302'}, {url:'stun:stun1.l.google.com:19302'}, {url:'stun:stun2.l.google.com:19302'}, {url:'stun:stun3.l.google.com:19302'}, {url:'stun:stun4.l.google.com:19302'}]}})
+        var peer = new Peer({ initiator: payload.initiator == window.user_id, trickle: true, stream: stream, config: {iceServers: [{urls:'stun:stun.l.google.com:19302'}, {urls:'stun:stun1.l.google.com:19302'}, {urls:'stun:stun2.l.google.com:19302'}, {urls:'stun:stun3.l.google.com:19302'}, {urls:'stun:stun4.l.google.com:19302'}]}})
 
         peer.on('error', err => { 
           try {
