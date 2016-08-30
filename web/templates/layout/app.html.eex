@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello PhoenixWebrtc!</title>
+    <title>ElixirConf Roulette</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -16,7 +16,7 @@
     <script>window.user_id = "<%= assigns[:user_id] %>";</script>
     <div class="container">
       <header class="header">
-        <h1> Phoenix WebRTC Example</h1>
+        <h1> Roulette </h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

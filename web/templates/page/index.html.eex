@@ -1,4 +1,6 @@
 <div class="row" id="user-list">
+  <h4 id="status"></h4>
   <video id="caller-video"></video>
   <video id="my-video"></video>
+  <span class="civil">I shouldn't have to say this, but please be civil.</span>
 </div>
