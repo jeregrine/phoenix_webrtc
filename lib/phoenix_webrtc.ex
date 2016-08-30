@@ -10,6 +10,7 @@ defmodule PhoenixWebrtc do
     children = [
       # Start the endpoint when the application starts
       supervisor(PhoenixWebrtc.Endpoint, []),
+      supervisor(PhoenixWebrtc.Presence, []),
       # Start your own worker by calling: PhoenixWebrtc.Worker.start_link(arg1, arg2, arg3)
       # worker(PhoenixWebrtc.Worker, [arg1, arg2, arg3]),
     ]
